@@ -8,8 +8,11 @@
     "@testing-library/user-event": "^13.5.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
+    "react-redux": "^8.0.2",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "redux": "^4.2.0",
+    "redux-thunk": "^2.4.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -38,5 +41,8 @@
   },
   "license": "GPL-3.0-or-later",
   "repository": "https://github.com/kluth/would-you-rather",
-  "bugs": "https://github.com/kluth/would-you-rather/issues"
+  "bugs": "https://github.com/kluth/would-you-rather/issues",
+  "devDependencies": {
+    "jest-axe": "^6.0.0"
+  }
 }
