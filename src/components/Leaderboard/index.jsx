@@ -4,25 +4,27 @@ import { getUsers } from '../../store/actions/userActions'
 
 const Leaderboard = () => {
     const dispatch = useDispatch()
+    const users = useSelector(state => state.users)
     useEffect(() => {
         getUsers(dispatch)
     }, [dispatch]);
-    const users = useSelector(state => state.users)
   return (
       <div role="list">
           {
-              // if user is not empty, sort by score
               users.length > 0 &&
-              users.sort((a, b) => b.score - a.score).map(user => {
-                    return (
-                        <div key={user.id}>
-                            <h3>{user.name}</h3>
-                            <h3>{user.score}</h3>
-                        </div>
-                    )
-              }
-                )
-          }
+              users.sort((a, b) => Object.keys(b.answers).length - Object.keys(a.answers).length).map((user, index) => (
+                  <div key={user.id}>
+                      <div>
+                          <h3>#{index + 1}: {index === 0 ? (
+                              <span>👑</span>
+                          ): (
+                               null   
+                          )}{user.name}</h3>
+                          <h4>{Object.keys(user.answers).length} answers</h4>
+                      </div>
+                  </div>
+              ))
+            }
       </div>
     )
 }
