@@ -58,7 +58,9 @@ describe('Dashboard', () => {
                     ]
             }
         })
-        expect(screen.getByTestId('question-grid')).toBeInTheDocument()
+        expect(screen.getByTestId('question-grid', {
+            hidden: true
+        })).toBeInTheDocument()
     })
 
     it('should have no a11y violations with questions', async () => {
@@ -123,7 +125,9 @@ describe('Dashboard', () => {
                 ]
             }
         })
-        expect(screen.getAllByRole('link')[0]).toBeInTheDocument()
+        expect(screen.getAllByRole('link', {
+            hidden: true
+        })[0]).toBeInTheDocument()
         expect(screen.getAllByRole('link')).toHaveLength(2)
     })
     

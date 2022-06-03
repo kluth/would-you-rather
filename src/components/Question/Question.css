@@ -1,0 +1,4 @@
+#root>div>main>div>div.question-card-header>div {
+  display: flex;
+  align-items: center;
+}
