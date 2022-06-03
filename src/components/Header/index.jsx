@@ -21,6 +21,9 @@ const Header = () => {
                       <li>
                           <Link to='/leaderboard'>Leaderboard</Link>
                       </li>
+                      <li>
+                          <Link to='/new'>New Question</Link>
+                      </li>
                   </ul>
               </div>
               </div>
