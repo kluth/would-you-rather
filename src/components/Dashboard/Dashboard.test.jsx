@@ -29,40 +29,6 @@ const renderWithProvider = (ui, { reduxState } = {}) => {
 
 describe('Dashboard', () => {
     
-    it('should display the questions in a grid', () => {
-        renderWithProvider(<Dashboard />, {
-            reduxState: {
-                questions: [
-                        {
-                            id: 1,
-                            optionOne: {
-                                votes: [],
-                                text: 'test'
-                            },
-                            optionTwo: {
-                                votes: [],
-                                text: 'test'
-                            }
-                        },
-                        {
-                            id: 2,
-                            optionOne: {
-                                votes: [],
-                                text: 'test'
-                            },
-                            optionTwo: {
-                                votes: [],
-                                text: 'test'
-                            }
-                        }
-                    ]
-            }
-        })
-        expect(screen.getByTestId('question-grid', {
-            hidden: true
-        })).toBeInTheDocument()
-    })
-
     it('should have no a11y violations with questions', async () => {
         const { container } = renderWithProvider(<Dashboard />, {
             reduxState: {
@@ -95,41 +61,6 @@ describe('Dashboard', () => {
     const results = await axe(container)
     expect(results).toHaveNoViolations()
     })
-
-    it('should link to the question page', () => {
-        renderWithProvider(<Dashboard />, {
-            reduxState: {
-                questions: [
-                    {
-                        id: 1,
-                        optionOne: {
-                            votes: [],
-                            text: 'test'
-                        },
-                        optionTwo: {
-                            votes: [],
-                            text: 'test'
-                        }
-                    },
-                    {
-                        id: 2,
-                        optionOne: {
-                            votes: [],
-                            text: 'test'
-                        },
-                        optionTwo: {
-                            votes: [],
-                            text: 'test'
-                        }
-                    }
-                ]
-            }
-        })
-        expect(screen.getAllByRole('link', {
-            hidden: true
-        })[0]).toBeInTheDocument()
-        expect(screen.getAllByRole('link')).toHaveLength(2)
-    })
     
     it('should display the no questions message when there are no questions in the database', () => {
         renderWithProvider(<Dashboard />, {
@@ -144,5 +75,151 @@ describe('Dashboard', () => {
     const { container } = renderWithProvider(<Dashboard />)
     const results = await axe(container)
     expect(results).toHaveNoViolations()
+    })
+
+    // if there are new questions, they should be displayed
+    it('should display the new questions when there are new questions in the database', () => {
+        renderWithProvider(<Dashboard />, {
+            reduxState: {
+                questions: {
+                    new: [
+                        {
+                            id: 1,
+                            optionOne: {
+                                votes: [],
+                                text: 'test'
+                            },
+                            optionTwo: {
+                                votes: [],
+                                text: 'test'
+                            }
+                        },
+                        {
+                            id: 2,
+                            optionOne: {
+                                votes: [],
+                                text: 'test'
+                            },
+                            optionTwo: {
+                                votes: [],
+                                text: 'test'
+                            }
+                        }
+                    ]
+                }
+            }
+        })
+        expect(screen.getAllByText('New Questions',
+            { exact: false })).toHaveLength(2)
+    })
+
+    it('should display the old questions when there are old questions in the database', () => {
+        renderWithProvider(<Dashboard />, {
+            reduxState: {
+                questions: {
+                    old: [
+                        {
+                            id: 1,
+                            optionOne: {
+                                votes: [],
+                                text: 'test'
+                            },
+                            optionTwo: {
+                                votes: [],
+                                text: 'test'
+                            }
+                        },
+                        {
+                            id: 2,
+                            optionOne: {
+                                votes: [],
+                                text: 'test'
+                            },
+                            optionTwo: {
+                                votes: [],
+                                text: 'test'
+                            }
+                        }
+                    ]
+                }
+            }
+        })
+        expect(screen.getAllByText('Old Questions',
+            { exact: false })).toHaveLength(2)
+    })
+
+    // when option one has more votes than option two, it should be displayed as the winner
+    it('should display the first option as winner of the old question when it has more votes', () => {
+        renderWithProvider(<Dashboard />, {
+            reduxState: {
+                questions: {
+                    old: [
+                        {
+                            id: 1,
+                            optionOne: {
+                                votes: [1, 2, 3, 4, 5],
+                                text: 'test 1'
+                            },
+                            optionTwo: {
+                                votes: [1, 2, 3, 4],
+                                text: 'test 2'
+                            }
+                        }
+                    ]
+                }
+            }
+        })
+        expect(screen.getByText(`test 1 is winning by 5 votes over 4 votes for test 2`,
+            { exact: false })).toBeInTheDocument()
+    })
+
+    // when option two has more votes than option one, it should be displayed as the winner
+    it('should display the second option as winner of the old question when it has more votes', () => {
+        renderWithProvider(<Dashboard />, {
+            reduxState: {
+                questions: {
+                    old: [
+                        {
+                            id: 1,
+                            optionOne: {
+                                votes: [1, 2, 3, 4],
+                                text: 'test 1'
+                            },
+                            optionTwo: {
+                                votes: [1, 2, 3, 4, 5],
+                                text: 'test 2'
+                            }
+                        }
+                    ]
+                }
+            }
+        })
+        expect(screen.getByText(`test 2 is winning by 5 votes over 4 votes for test 1`,
+            { exact: false })).toBeInTheDocument()
+    })
+
+    // when option one has the same number of votes as option two, it should be displayed as a tie
+    it('should display the first option as a tie of the old question when it has the same number of votes', () => {
+        renderWithProvider(<Dashboard />, {
+            reduxState: {
+                questions: {
+                    old: [
+                        {
+                            id: 1,
+                            optionOne: {
+                                votes: [1, 2, 3, 4],
+                                text: 'test 1'
+                            },
+                            optionTwo: {
+                                votes: [1, 2, 3, 4],
+                                text: 'test 2'
+                            }
+                        }
+                    ]
+                }
+            }
+        })
+        expect(screen.getByText(`It's a tie! Both test 1 and test 2 have 4 votes each.`,
+            { exact: false })).toBeInTheDocument()
     })
 });

@@ -14,7 +14,7 @@ function App() {
 
   return (
     <div className="App" role="application">
-      {/* if auth is empty */
+      {/* if auth is not empty */
         auth.id ? (
           <>
             <Header />
