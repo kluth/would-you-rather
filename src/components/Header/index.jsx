@@ -33,7 +33,8 @@ const Header = () => {
                   </ul>
               </div>
               <div className="header-container-profile">
-                  <img alt='Avatar' src={auth.avatarURL || 'https://i.pravatar.cc/150'} />;
+                  <img alt='Avatar' src={auth.avatarURL || 'https://i.pravatar.cc/150'} />
+                    <h3>{auth.name}</h3>
               </div>
               </div>
           </div>
