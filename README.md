@@ -1,4 +1,5 @@
 # would-you-rather
+[![CodeQL](https://github.com/kluth/would-you-rather/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/kluth/would-you-rather/actions/workflows/codeql-analysis.yml)
 
 Would you rather... ? Started as a project for udacity, but now it's a full-fledged web app for fun.
 
