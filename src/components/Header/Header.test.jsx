@@ -1,5 +1,5 @@
 import Header from './'
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
 import {
     legacy_createStore as createStore
@@ -27,5 +27,16 @@ describe('Header', () => {
         )
         expect(screen).toMatchSnapshot()
     })
+  
+  it('should navigate to /leaderboard when the leaderboard link is clicked', () => {
+    renderWithProvider(
+      <Header />
+    )
+    const leaderboardLink = screen.getByText('Leaderboard')
+    expect(leaderboardLink).toBeInTheDocument()
+    expect(leaderboardLink).toHaveAttribute('href', '/leaderboard')
+    fireEvent.click(leaderboardLink)
+    expect(window.location.pathname).toBe('/leaderboard')
+  })
 })
     
