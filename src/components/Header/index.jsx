@@ -4,8 +4,10 @@ import './Header.css'
 import {
     ReactComponent as QuestionAnswer
 } from '@material-design-icons/svg/outlined/question_answer.svg'
+import { useSelector } from 'react-redux'
 
 const Header = () => {
+    const auth = useSelector(state => state.auth)
   return (
       <div role="navigation">
           <div className='header-container'>
@@ -29,6 +31,9 @@ const Header = () => {
                           <Link to='/new'>New Question</Link>
                       </li>
                   </ul>
+              </div>
+              <div className="header-container-profile">
+                  <img alt='Avatar' src={auth.avatarURL || 'https://i.pravatar.cc/150'} />;
               </div>
               </div>
           </div>
