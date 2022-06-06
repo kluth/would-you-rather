@@ -1,0 +1,86 @@
+{
+  "name": "wyr",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-design-icons/svg": "^0.11.1",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.3.0",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-redux": "^8.0.2",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "5.0.1",
+    "redux": "^4.2.0",
+    "redux-thunk": "^2.4.1",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --coverage",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "license": "GPL-3.0-or-later",
+  "repository": "https://github.com/kluth/would-you-rather",
+  "bugs": "https://github.com/kluth/would-you-rather/issues",
+  "devDependencies": {
+    "@testing-library/user-event": "^14.2.0",
+    "jest-axe": "^6.0.0"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!src/_DATA.js",
+      "!src/index.js",
+      "!src/setupTests.js",
+      "!src/App.js",
+      "!src/App.test.js",
+      "!src/App.test.jsx",
+      "!src/App.test.ts",
+      "!src/App.test.tsx",
+      "!src/App.test.css",
+      "!src/App.test.less",
+      "!src/App.test.scss",
+      "!src/App.test.sass",
+      "!src/App.test.jpg",
+      "!src/App.test.jpeg",
+      "!src/App.test.png",
+      "!src/App.test.gif",
+      "!src/App.test.eot"
+    ],
+    "coverageReporters": [
+      "json",
+      "lcov",
+      "text",
+      "clover",
+      "html"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": 80
+      }
+    }
+  }
+}

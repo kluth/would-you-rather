@@ -1,0 +1,25 @@
+:root {
+  /* CSS HSL */
+    --jet: hsla(60, 3%, 17%, 1);
+    --black-olive: hsla(86, 7%, 21%, 1);
+    --black-olive-2: hsla(138, 8%, 24%, 1);
+    --feldgrau: hsla(172, 20%, 31%, 1);
+    --medium-spring-green: hsla(150, 97%, 56%, 1);
+
+  }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

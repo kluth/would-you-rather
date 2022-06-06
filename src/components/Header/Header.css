@@ -1,0 +1,68 @@
+div[role='navigation'] {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--jet);
+  z-index: 1;
+}
+
+div[role='navigation'] .header-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+div[role='navigation'] .header-container-logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 150px;
+}
+
+div[role='navigation']>div.header-container>div.header-container-logo>h1>a {
+  color: var(--medium-spring-green);
+  font-size: 2rem;
+  font-weight: bold;
+  text-decoration: none;
+  margin-left: 1rem;
+}
+
+div[role='navigation']>div.header-container>div.header-container-logo>h1>a>svg {
+  fill: var(--medium-spring-green);
+}
+
+div[role='navigation'] .header-container .header-container-nav {
+  width: 50%;
+}
+
+div[role='navigation'] .header-container .header-container-nav ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  list-style-type: none;
+}
+
+div[role='navigation'] .header-container .header-container-nav ul li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+}
+
+div[role='navigation'] .header-container .header-container-nav ul li a {
+  color: var(--medium-spring-green);
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 0.5rem;
+}
+
+div[role='navigation'] .header-container .header-container-nav ul li a:hover {
+  text-decoration: underline;
+}
