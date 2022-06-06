@@ -3,6 +3,10 @@ on:
     branches:
     - main
     - development
+  push:
+    branches:
+    - main
+    - development
 jobs:
   my_job:
     name: test the app
