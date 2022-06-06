@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUsers } from '../../store/actions/userActions'
+import './Leaderboard.css'
 
 const Leaderboard = () => {
     const dispatch = useDispatch()
@@ -16,7 +17,7 @@ const Leaderboard = () => {
                   <div key={user.id}>
                       <div>
                           <h3>#{index + 1}: {index === 0 ? (
-                              <span>👑</span>
+                              <span className='crown'>👑</span>
                           ): (
                                null   
                           )}{user.name}</h3>

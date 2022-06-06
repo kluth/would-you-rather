@@ -1,6 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './Header.css'
+import {
+    ReactComponent as QuestionAnswer
+} from '@material-design-icons/svg/outlined/question_answer.svg'
 
 const Header = () => {
   return (
@@ -9,7 +12,8 @@ const Header = () => {
               <div className='header-container-logo'>
                   <h1>
                       <Link to='/'>
-                          <img src='https://i.imgur.com/3YyqQ.png' alt='logo' />
+                          <QuestionAnswer />
+                          WYR
                       </Link>
                   </h1>
               </div>

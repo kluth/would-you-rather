@@ -1,40 +1,82 @@
-.question-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-gap: 20px;
-  margin-top: 20px;
-}
-
-.question-card {
-  background-color: #fff;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  border-radius: 5px;
+div#dashboard {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 150px;
-}
-
-.question-card-header {
-  display: flex;
-  justify-content: space-between;
-  place-items: center;
-}
-
-.question-grid h3 {
-  font-size: 20px;
-  font-weight: bold;
-  display: none;
-}
-
-.question-card-header-text {
-  display: flex;
+  justify-content: center;
   align-items: center;
 }
 
-.question-card-header-text h2 {
-  font-size: 12px;
+div#dashboard details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  background-color: var(--feldgrau);
+}
+
+div#dashboard details .question-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 1rem;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+}
+
+div#dashboard details .question-grid .question-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: var(--feldgrau);
+}
+
+div#dashboard details .question-grid a {
+  text-decoration: none;
+  color: var(--medium-spring-green);
+}
+
+div#dashboard details .question-grid .question-card .question-card-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+
+}
+
+div#dashboard details .question-grid .question-card .question-card-header h3 {
+  grid-area: 'a';
+  font-size: 1.5rem;
+}
+
+div#dashboard details .question-grid .question-card .question-card-header-text {
+  font-size: 1.2rem;
   font-weight: bold;
-  height: 100px;
+  color: var(--black-olive);
+}
+
+div#dashboard details .question-grid .question-card .question-card-header-text h2 {
+  font-size: 1.2rem;
+}
+
+div#dashboard details .question-grid .question-card .question-card-header-text h2:nth-child(odd) {
+  grid-area: 'b';
+}
+
+div#dashboard details .question-grid .question-card .question-card-header-text h2:nth-child(even) {
+  grid-area: 'c';
+}
+
+div#dashboard details .question-grid .question-card .question-card-header h5 {
+  grid-area: 'd';
 }

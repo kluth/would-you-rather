@@ -17,29 +17,41 @@ const Dashboard = () => {
   
   return (
     <div id='dashboard'>
-      {questions.new && questions.old &&
+      {questions.new &&
         <>
-          <h1>New Questions [{questions.new.length}]</h1>
-          <h2>Would you rather... ?</h2>
-          {questions.new.length > 0 &&
-            <div data-testid="question-grid" className='question-grid'>
-              {questions.new.map(question => (
-                <Link key={question.id} to={`/questions/${question.id}`}>
-                  <div className='question-card'>
-                    <div className='question-card-header'>
-                      <h3>Would you rather</h3>
-                      <div className='question-card-header-text'>
-                        <h2>{question.optionOne.text}</h2>
-                        <h2>{question.optionTwo.text}</h2>
+          <details about='New Questions' open>
+            <summary>
+              {`New Questions [${questions.new.length}]`}
+            </summary>
+            <h1>New Questions [{questions.new.length}]</h1>
+            <h2>Would you rather... ?</h2>
+            {questions.new.length > 0 &&
+              <div data-testid="question-grid" className='question-grid'>
+                {questions.new.map(question => (
+                  <Link key={question.id} to={`/questions/${question.id}`}>
+                    <div className='question-card'>
+                      <div className='question-card-header'>
+                        <h3>Would you rather</h3>
+                        <div className='question-card-header-text'>
+                          <h2>{question.optionOne.text}</h2>
+                          or
+                          <h2>{question.optionTwo.text}</h2>
+                        </div>
                       </div>
-                    </div>
                 
-                    <h5>Asked by {question.author} on {new Date(question.timestamp).toLocaleDateString()}</h5>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          }
+                      <h5>Asked by {question.author} on {new Date(question.timestamp).toLocaleDateString()}</h5>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            }
+          </details>
+        </>}
+      {questions.old &&
+        <>
+        <details about='Old Questions' title={`Old Questions [${questions.old.length}]`}
+        >
+          <summary>{`Old Questions [${questions.old.length}]`}</summary>
           <h1>Old Questions [{questions.old.length}]</h1>
           <h2>Would you rather... ?</h2>
           {questions.old.length > 0 &&
@@ -60,6 +72,11 @@ const Dashboard = () => {
                             {question.optionTwo.text} is winning by {question.optionTwo.votes.length} votes over {question.optionOne.votes.length} votes for {question.optionOne.text}
                           </p>
                         }
+                        {question.optionOne.votes.length === question.optionTwo.votes.length &&
+                          <p>
+                            It's a tie! Both {question.optionOne.text} and {question.optionTwo.text} have {question.optionOne.votes.length} votes each.
+                          </p>
+                        }
                       </h2>
                       </div>
                     </div>
@@ -69,6 +86,7 @@ const Dashboard = () => {
               ))}
             </div>
           }
+        </details>
         </>
       }
       {Object.values(questions).length === 0 &&
