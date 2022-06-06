@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { saveAnswer } from '../../store/actions/questionActions'
@@ -11,10 +11,20 @@ const Question = () => {
     const navigate = useNavigate()
     const newQuestions = useSelector(state => state.questions.new)
     const oldQuestions = useSelector(state => state.questions.old)
-
-    const questions = newQuestions.concat(oldQuestions)
+    const users = useSelector(state => state.users)
     const auth = useSelector(state => state.auth)
     const { id } = useParams()
+    // if states of newQuestions and oldQuestions are empty, redirect to /uhoh
+    useEffect(() => {
+    if (!newQuestions && !oldQuestions) {
+        navigate('/uhoh')
+        return
+        }
+    }, [newQuestions, oldQuestions, navigate])
+
+
+    const questions = newQuestions?.concat(oldQuestions)
+    const question = questions?.find(question => question.id === id)
     const handleSelection = (event) => {
         event.preventDefault()
         const { value } = event.target
@@ -29,13 +39,16 @@ const Question = () => {
     }
     
     // question is from questions array found by id
-    const question = questions.find(question => question.id === id)
-  return (
+    
+    return (
+      <>
+            {question &&       
       <main role="main">
           <div className='question-card'>
               <div className='question-card-header'>
                   <div className='question-card-header-text'>
-                      <h3>Would you rather</h3>
+                                <h3>Would you rather</h3>
+                                <img src={users[question.author]?.avatarURL || 'https://i.pravatar.cc/150'} alt={users[question.author]?.name || 'Avatar'}/>
                   </div>
               </div>
               <div className='question-card-body'>
@@ -53,6 +66,8 @@ const Question = () => {
               </div>
           </div>
     </main>
+            }
+      </>
   )
 }
 
