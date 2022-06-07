@@ -1,10 +1,12 @@
 import React from 'react'
 import { saveQuestion } from '../../store/actions/questionActions'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 const New = () => {
     const auth = useSelector(state => state.auth)
     const dispatch = useDispatch()
+    const navigation = useNavigate()
     const handleSaveQuestion = (e) => {
         e.preventDefault()
         const optionOne = e.target.optionOne.value
@@ -16,6 +18,7 @@ const New = () => {
             author
         }
         saveQuestion(dispatch, newQuestion)
+        navigation('/')
     }
   return (
       <div className='new-question'>
