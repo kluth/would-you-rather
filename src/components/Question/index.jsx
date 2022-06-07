@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom'
 const Question = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const [option, setOption] = React.useState('')
     const newQuestions = useSelector(state => state.questions.new)
     const oldQuestions = useSelector(state => state.questions.old)
     const users = useSelector(state => state.users)
@@ -27,12 +28,10 @@ const Question = () => {
     const question = questions?.find(question => question.id === id)
     const handleSelection = (event) => {
         event.preventDefault()
-        const { value } = event.target
-        console.log(value)
         saveAnswer(dispatch, {
             authedUser: auth.id,
             qid: id,
-            answer: value
+            answer: event.target.value
         }).then(() => {
             navigate('/')
         })
@@ -53,13 +52,13 @@ const Question = () => {
               </div>
               <div className='question-card-body'>
                   {/* form that holds the buttons for both options */}
-                  <form onClick={handleSelection}>
+                  <form onChange={handleSelection}>
                       <div className='question-card-body-option'>
-                          <input type='radio' name='option' value='optionOne' />
+                                    <input type='radio' name='option' value='optionOne' />
                           <label>{question.optionOne.text}</label>
                       </div>
                       <div className='question-card-body-option'>
-                          <input type='radio' name='option' value='optionTwo' />
+                                    <input type='radio' name='option' value='optionTwo' />
                           <label>{question.optionTwo.text}</label>
                       </div>
                     </form>
