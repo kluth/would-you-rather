@@ -1,1 +1,26 @@
-
+name: Code Quality Check
+on:
+  pull_request:
+    branches:
+    - main
+    - development
+  push:
+    branches:
+    - main
+    - development
+jobs:
+  my_job:
+    name: test the app
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '18.2.0'
+      - name: npm i, npm test
+        run: |
+          npm install
+          npm test
+    
+    
