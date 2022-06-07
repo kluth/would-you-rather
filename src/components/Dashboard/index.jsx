@@ -26,8 +26,8 @@ const Dashboard = () => {
             <h1>New Questions [{questions.new.length}]</h1>
             <h2>Would you rather... ?</h2>
             {questions.new.length > 0 &&
-              <div data-testid="question-grid" className='question-grid'>
-                {questions.new.map(question => (
+                      <div data-testid="question-grid" className='question-grid'>
+                          {questions.new.sort((b, a) => a.timestamp - b.timestamp).map(question => (
                   <Link key={question.id} to={`/questions/${question.id}`}>
                     <div className='question-card'>
                       <div className='question-card-header'>
@@ -56,7 +56,8 @@ const Dashboard = () => {
           <h2>Would you rather... ?</h2>
           {questions.old.length > 0 &&
             <div data-testid="question-grid" className='question-grid'>
-              {questions.old.map(question => (
+                      {questions.old.sort((b, a) => a.timestamp - b.timestamp).map(question => (
+                  <Link key={question.id} to={`/questions/${question.id}`}>
                 <div className='question-card' key={question.id}>
                     <div className='question-card-header'>
                       <h3>Would you rather</h3>
@@ -83,6 +84,7 @@ const Dashboard = () => {
                 
                     <h5>Asked by {question.author} on {new Date(question.timestamp).toLocaleDateString()}</h5>
                   </div>
+                          </Link>
               ))}
             </div>
           }

@@ -9,7 +9,6 @@ import { useNavigate } from 'react-router-dom'
 const Question = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const [option, setOption] = React.useState('')
     const newQuestions = useSelector(state => state.questions.new)
     const oldQuestions = useSelector(state => state.questions.old)
     const users = useSelector(state => state.users)
@@ -40,8 +39,8 @@ const Question = () => {
     // question is from questions array found by id
     
     return (
-      <>
-            {question &&       
+        <>
+            {question && 
       <main role="main">
           <div className='question-card'>
               <div className='question-card-header'>
@@ -50,24 +49,41 @@ const Question = () => {
                                 <img src={users[question.author]?.avatarURL || 'https://i.pravatar.cc/150'} alt={users[question.author]?.name || 'Avatar'}/>
                   </div>
               </div>
-              <div className='question-card-body'>
-                  {/* form that holds the buttons for both options */}
-                  <form onChange={handleSelection}>
-                      <div className='question-card-body-option'>
-                                    <input type='radio' name='option' value='optionOne' />
-                          <label>{question.optionOne.text}</label>
-                      </div>
-                      <div className='question-card-body-option'>
-                                    <input type='radio' name='option' value='optionTwo' />
-                          <label>{question.optionTwo.text}</label>
-                      </div>
-                    </form>
-              </div>
-          </div>
-    </main>
+                    <div className='question-card-body'>
+                        {/* when question is in newQuestions show the form */
+                        newQuestions.includes(question) &&
+                            <form onSubmit={handleSelection}>
+                                <div className='question-card-body-option'>
+                                    <input type='radio' name='option' value='optionOne' id='optionOne'/>
+                                    <label htmlFor='optionOne'>{question.optionOne.text}</label>
+                                </div>
+                                <div className='question-card-body-option'>
+                                    <input type='radio' name='option' value='optionTwo' id='optionTwo'/>
+                                    <label htmlFor='optionTwo'>{question.optionTwo.text}</label>
+                                </div>
+                                <button type='submit'>Submit</button>
+                            </form>
+                        }
+                        {/* when question is in oldQuestions show the text with the percentages of each option */
+                        oldQuestions.includes(question) &&
+                            <div className='question-card-body-option'>
+                                <div className='question-card-body-option-text'>
+                                    <p>{question.optionOne.text}</p>
+                                    <p>{`${(question.optionOne.votes.length / (question.optionOne.votes.length + question.optionTwo.votes.length)) * 100}%`}</p>
+                                </div>
+                                <div className='question-card-body-option-text'>
+                                    <p>{question.optionTwo.text}</p>
+                                    <p>{`${(question.optionTwo.votes.length / (question.optionOne.votes.length + question.optionTwo.votes.length)) * 100}%`}</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </main>
             }
-      </>
-  )
+        </>
+    )
 }
+                  
 
 export default Question
