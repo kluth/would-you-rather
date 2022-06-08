@@ -1,5 +1,7 @@
 import * as API from './_DATA'
 
+jest.setTimeout(30000)
+
 describe('_DATA', () => {
     describe('_saveQuestion', () => {
         it('should return the question object when correct', async () => {
